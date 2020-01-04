@@ -6,29 +6,64 @@ Matrix weighted intra prediction (MIP) method is a newly added intra prediction 
 
 Figure 20 – Matrix weighted intra prediction process 
 
+
+
 **3.3.6.1 Averaging neighboring samples**
 
-Out of the boundary samples, four samples in the case of   and eight samples in all other cases are extracted by averaging. Specifically, the input boundaries   and   are reduced to smaller boundaries   and   by averaging neighboring boundary samples according to predefined rule depends on block size. Then, the two reduced boundaries   and   are concatenated to a reduced boundary vector   which is thus of size four for blocks of shape    and of size eight for blocks of all other shapes. If   refers to the MIP-mode, this concatenation is defined as follows:
+Out of the boundary samples, four samples in the case of   and eight samples in all other cases are extracted by averaging. Specifically, the input boundaries   and   are reduced to smaller boundaries   and   by averaging neighboring boundary samples according to predefined rule depends on block size. Then, the two reduced boundaries   and   are concatenated to a reduced boundary vector   which is thus of size four for blocks of shape    and of size eight for blocks of all other shapes. If   refers to the MIP-mode, this concatenation is defined as follows:      
 
-​             (3-9)
+ $
+    bdry_{red}=\left\{
+                \begin{array}{ll}
+                  [bdry_{red}^{top}, bdry_{red}^{left}] \space \space \text{ for $W=H=4$ and $mode<18$ } \\
+                  [bdry_{red}^{left}, bdry_{red}^{top}] \space \space \text{ for $W=H=4$ and $mode\geq 18$ }\\
+                  [bdry_{red}^{top}, bdry_{red}^{left}] \space \space \text{ for max$(W,H)=8$ and $mode<10$ }\\
+                  [bdry_{red}^{left}, bdry_{red}^{top}] \space \space \text{ for max$(W,H)=8$ and $mode\geq 10$ }\\
+                  [bdry_{red}^{top}, bdry_{red}^{left}] \space \space \text{ for max$(W,H)>8$ and $mode<6$ }\\
+                  [bdry_{red}^{left}, bdry_{red}^{top}] \space \space \text{ for max$(W,H)>8$ and $mode\geq 6$ }
+                \end{array}
+              \right.
+  $                                         (3-9)
 
- 
+
 
 **3.3.6.2 Matrix Multiplication**
 
-A matrix vector multiplication, followed by addition of an offset, is carried out with the averaged samples as an input. The result is a reduced prediction signal on a subsampled set of samples in the original block. Out of the reduced input vector   a reduced prediction signal   which is a signal on the downsampled block of width   and height   is generated. Here,   and   are defined as:
+A matrix vector multiplication, followed by addition of an offset, is carried out with the averaged samples as an input. The result is a reduced prediction signal on a subsampled set of samples in the original block. Out of the reduced input vector $bdry_{red}$ a reduced prediction signal $pred_{red}$  which is a signal on the downsampled block of width $W_{red } $  and height $H_{red}$  is generated. Here, $W_{red}$  and $H_{red}$  are defined as:
 
-​                           (3-10)
+ $
+    W_{red}=\left\{
+                \begin{array}{ll}
+                  4 \space \space \space \space\space\space\space\space\space\space\space\space\space\space\space\space\space \space \text{ for max$(W,H) \leq 8$} \\
+                  \text{min}(W,8) \space \space \text{ for max$(W, H) \>8$ and $mode\geq 18$ }
+                \end{array}
+              \right.
+  $                                        (3-10)
 
-​                           (3-11)
+ $
+    H_{red}=\left\{
+                \begin{array}{ll}
+                  4 \space \space \space \space\space\space\space\space\space\space\space\space\space\space\space\space\space \space \text{ for max$(W,H) \leq 8$} \\
+                  \text{min}(H,8) \space \space \space \text{ for max$(W, H) \>8$ and $mode\geq 18$ }
+                \end{array}
+              \right.
+  $                                        (3-11)
 
-The reduced prediction signal   is computed by calculating a matrix vector product and adding an offset:
+The reduced prediction signal $pred_{red}$ is computed by calculating a matrix vector product and adding an offset:
 
-  .
+$pred_{red} = A \cdot bdry_{red} +b$  .
 
-Here,   is a matrix that has   rows and 4 columns if   and 8 columns in all other cases.   is a vector of size   . The matrix   and the offset vector   are taken from one of the sets   ,   ,   One defines an index   as follows:
+Here, $A$  is a matrix that has $W_{red} \cdot H_{red}$  rows and 4 columns if $W=H=4$ and 8 columns in all other cases.  $b$ is a vector of size $W_{red} \cdot H_{red}$ . The matrix $A$ and the offset vector $b$ are taken from one of the sets $S_0.S_1, S_2$ . One defines an index $idx=idx(W, H)$  as follows:
 
-​                          (3-12)
+$
+    idx(W, H)=\left\{
+                \begin{array}{ll}
+                  0 \space \space \space \space\space \text{ for $W=H=4$} \\
+                  1  \space\space\space \space \space \text{ for max$(W, H) =8$ }  \\
+                  2  \space\space\space \space \space \text{ for max$(W, H) >8$  } 
+                \end{array}
+              \right.
+  $                                                      (3-12)
 
 Here, each coefficient of the matrix A is represented with 8 bit precision. 
 
