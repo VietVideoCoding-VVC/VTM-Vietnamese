@@ -10,7 +10,7 @@ In order to keep the VPDU size as 64x64 luma samples, the following normative pa
 
 –  For an Nx128 CU with N ≤ 64 (i.e. height equal to 128 and width smaller than 128), vertical BT is not allowed.
 
-  ![Fig12](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig12.png)
+  ![Fig12](\imgs\Fig12.png)
 
 **Figure** **12** **– Examples of** **disallowed TT and BT partitioning in VTM**
 

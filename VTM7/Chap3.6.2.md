@@ -1,0 +1,21 @@
+### 1.1.1    Transform coefficient level coding
+
+In HEVC, transform coefficients of a coding block are coded using non-overlapped coefficient groups (CGs or subblocks), and each CG contains the coefficients of a 4x4 block of a coding block. In VVC Draft 6, the selection of coefficient group sizes becomes dependent upon TB size only, i.e., remove the dependency on channel type. As a consequence, various CGs (1x16, 2x8, 8x2, 2x4, 4x2 and 16x1) become available. The CGs inside a coding block, and the transform coefficients within a CG, are coded according to pre-defined scan orders. In order to restrict the maximum number of context coded bins per pixel, the area of the TB and the colour component are used to derive the maximum number of context-coded bins for a TB. For a luma TB, the maximum number of context-coded bins is equal to TB_zosize*1.75. For a chroma TB, the maximum number of context-coded bins (CCB) is equal to TB_zosize*1.25. Here, TB_zosize indicates the number of samples within a TB after coefficient zero-out. Note that the coded_sub_block_flag in transform skip residual mode is not considered for CCB count. Unlike HEVC where residual coding is designed for the statistics and signal characteristics of transform coefficient levels, two separate residual coding structures are employed for transform coefficients and transform skip coefficients, respectively.
+
+#### 1.1.1.1    Residual coding for transform coefficients
+
+In transform coefficient coding, a variable, remBinsPass1, is first set to the maximum number of context-coded bins and is decreased by one when a context-coded bin is signalled. While the remBinsPass1 is larger than or equal to four, the first coding pass, which includes the sig_coeff_flag, abs_level_gt1_flag, par_level_flag, and abs_level_gt3_flag, is coded by using context-coded bins. If the number of context coded bin is not greater than Mccb in the first pass coding, the rest part of level information, which is indicated to be further coded in the first pass, is coded with syntax element of abs_remainder by using Golomb-rice code and bypass-coded bins. When the remBinsPass1 becomes smaller than 4 while coding the first pass, the rest part of coefficients, which are indicated to be further coded in the first pass, are coded with a syntax element of abs_remainder, and coefficients which are not coded in the first pass is directly coded in the second pass with the syntax element of dec_abs_level by using Golomb-Rice code and bypass-coded bins as depicted in Figure 43. The remBinsPass1 is reset for every TB. The transition of using context-coded bins for the sig_coeff_flag, abs_level_gt1_flag, par_level_flag, and abs_level_gt3_flag to using bypass-coded bins for the rest coefficients only happens at most once per TB. For a coefficient subblock, if the remBinsPass1 is smaller than 4, the entire coefficient subblock is coded by using bypass-coded bins. After all the above mentioned level coding, the signs (sign_flag) for all scan positions with sig_coeff_flag equal to 1 is finally bypass coded. 
+
+The unified (same) rice parameter (ricePar) derivation is used for Pass 2 and Pass 3. The only difference is that baseLevel is set to 4 and 0 for Pass 2 and Pass 3, respectively. Rice parameter is determined not only based on sum of absolute levels of neighboring five transform coefficients in local template, but the corresponding base level is also taken into consideration as follow:
+
+RicePara = RiceParTable[ max(min( 31, sumAbs – 5 * baseLevel), 0) ]        (3-46)
+
+ 
+
+​                               
+
+Figure 45 – residual coding structure for transform blocks
+
+#### 1.1.1.2    Residual coding for transform skip 
+
+Similar to HEVC, VVC supports transform skip mode. In transform skip mode, the statistical characteristics of the signal are different from those of transform coefficients, and applying transform to such residual in order to achieve energy compaction around low-frequency components is generally less effective. Residuals with such characteristics are often found in screen content as opposed to natural camera captured content. Therefore, detailed description of transform coefficient coding is described as part of the screen content coding tools in section 3.9.

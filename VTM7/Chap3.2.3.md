@@ -6,17 +6,17 @@ In VVC, a quadtree with nested multi-type tree using binary and ternary splits s
 
  
 
-  ![Fig07](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig07.png)
+  ![Fig07](imgs\Fig07.png)
 
 Figure 7 – Multi-type tree splitting modes
 
 Figure 8 illustrates the signalling mechanism of the partition splitting information in quadtree with nested multi-type tree coding tree structure. A coding tree unit (CTU) is treated as the root of a quaternary tree and is first partitioned by a quaternary tree structure. Each quaternary tree leaf node (when sufficiently large to allow it) is then further partitioned by a multi-type tree structure. In the multi-type tree structure, a first flag (mtt_split_cu_flag) is signalled to indicate whether the node is further partitioned; when a node is further partitioned, a second flag (mtt_split_cu_vertical_flag) is signalled to indicate the splitting direction, and then a third flag (mtt_split_cu_binary_flag) is signalled to indicate whether the split is a binary split or a ternary split. Based on the values of mtt_split_cu_vertical_flag and mtt_split_cu_binary_flag, the multi-type tree slitting mode (MttSplitMode) of a CU is derived as shown in Table 3‑1.
 
-  ![Fig08](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig08.png)
+  ![Fig08](imgs\Fig08.png)
 
 Figure 8 – Splitting flags signalling in quadtree with nested multi-type tree coding tree structure
 
-**Table** **3****‑****1** **–** **MttSplitMode derviation based on multi-type tree syntax elements**
+**Table** **3**‑1 **–** **MttSplitMode derviation based on multi-type tree syntax elements**
 
 | **MttSplitMode** | **mtt_split_cu_vertical_flag** | **mtt_split_cu_binary_flag** |
 | ---------------- | ------------------------------ | ---------------------------- |
@@ -31,7 +31,7 @@ Figure 9 shows a CTU divided into multiple Cus with a quadtree and nested multi-
 
 In VVC, the maximum supported luma transform size is 64×64 and the maximum supported chroma transform size is 32×32. When the width or height of the CB is larger the maximum transform width or height, the CB is automatically split in the horizontal and/or vertical direction to meet the transform size restriction in that direction.
 
-  ![Fig09](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig09.png)
+  ![Fig09](imgs\Fig09.png)
 
 Figure 9– Example of quadtree with nested multi-type tree coding block structure
 
@@ -55,7 +55,7 @@ In one example of the quadtree with nested multi-type tree coding tree structure
 
 To allow 64×64 Luma block and 32×32 Chroma pipelining design in VVC hardware decoders, TT split is forbidden when either width or height of a luma coding block is larger than 64 , as shown in Figure 10. TT split is also forbidden when either width or height of a chroma coding block is larger than 32.
 
-  ![Fig10](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig10.png)
+  ![Fig10](imgs\Fig10.png)
 
 **Figure** **10** **–** **No TT split for 128****×128 coding block**
 

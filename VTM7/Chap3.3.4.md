@@ -4,9 +4,9 @@ Multiple reference line (MRL) intra prediction uses more reference lines for int
 
  
 
-The index of selected reference line (mrl_idx) is signalled and used to generate intra predictor. For reference line idx, which is greater than 0, only include additional reference line modes in MPM list and only signal mpm index without remaining mode. The reference line index is signalled before intra prediction modes, and Planar and DC modes are excluded from intra prediction modes in case a nonzero reference line index is signalled.
+The index of selected reference line (`mrl_idx`) is signalled and used to generate intra predictor. For reference line `idx`, which is greater than 0, only include additional reference line modes in MPM list and only signal mpm index without remaining mode. The reference line index is signalled before intra prediction modes, and Planar and DC modes are excluded from intra prediction modes in case a nonzero reference line index is signalled.
 
-​                                ![Fig18](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig18.PNG)
+​                                ![Fig18](\imgs\Fig18.PNG)
 
 **Figure** **18** **Example of four reference lines neighboring to a prediction block**
 
