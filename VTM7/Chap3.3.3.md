@@ -14,7 +14,7 @@ Figure 17 illustrates the definition of reference samples $(R_{x,-1}, R_{-1,y},$
 
  
 
-| ![Fig17-A](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-A.png)   (a)    Diagonal  top-right mode | (b)    Di![Fig17-B](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-B.png)agonal  bottom-left mode |
+| ![Fig17-A](imgs\Fig17-A.png)   (a)    Diagonal  top-right mode | (b)    Di![Fig17-B](imgs\Fig17-B.png)agonal  bottom-left mode |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![Fig17-C](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-C.png)  (c) Adjacent diagonal top-right mode | ![Fig17-D](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-D.png)         (d)   Adjacent  diagonal bottom-left mode |
 
