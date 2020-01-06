@@ -14,19 +14,34 @@ Figure 17 illustrates the definition of reference samples $(R_{x,-1}, R_{-1,y},$
 
  
 
-| ![Fig17-A](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-A.png)   (a)    Diagonal  top-right mode | (b)    Di![Fig17-B](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-B.png)agonal  bottom-left mode |
+<<<<<<< HEAD
+| ![Fig17-A](\imgs\Fig17-A.png)   (a)    Diagonal  top-right mode | ![Fig17-B](\imgs\Fig17-B.png)(b) Diagonal  bottom-left mode  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![Fig17-C](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-C.png)  (c) Adjacent diagonal top-right mode | ![Fig17-D](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-D.png)         (d)   Adjacent  diagonal bottom-left mode |
+| ![Fig17-C](imgs\Fig17-C.png)  (c) Adjacent diagonal top-right mode | ![Fig17-D](imgs\Fig17-D.png)         (d)   Adjacent  diagonal bottom-left mode |
+=======
+| [Fig17-A](imgs\Fig17-A.png)   (a)    Diagonal  top-right mode | (b)    [Fig17-B](imgs\Fig17-B.png) agonal  bottom-left mode |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Fig17-C](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-C.png)  (c) Adjacent diagonal top-right mode | ![Fig17-D](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig17-D.png)         (d)   Adjacent  diagonal bottom-left mode |
+>>>>>>> 1965b3fe7dad95cbc23b302f2260dbff04c674b6
 
 **Figure** **17** **-** **Definition of samples used by PDPC applied to diagonal and adjacent angular intra modes.**
 
 The PDPC weights are dependent on prediction modes and are shown in 4. 
 
-**Table** **3‑5 **- Example of PDPC weights according to prediction modes**
+**Table** **3‑5 **- **Example of PDPC weights according to prediction modes**
 
+<<<<<<< HEAD
+| Prediction modes              | $wT$                                | $wL$                               | $wTL$ |
+| ----------------------------- | ----------------------------------- | ---------------------------------- | ----- |
+| Diagonal top-right            | $16 \gg ( ( y’\ll 1  ) \gg shift)$  | $16 \gg ( ( x’ \ll1  ) \gg shift)$ | 0     |
+| Diagonal bottom-left          | $16 \gg ( ( y’\ll1  ) \gg shift )$  | $16 \gg ( ( x’\ll1  ) \gg shift )$ | 0     |
+| Adjacent diagonal top-right   | $32 \gg ( ( y’\ll 1  ) \gg shift )$ | 0                                  | 0     |
+| Adjacent diagonal bottom-left | 0                                   | $32 \gg ( ( x’\ll1  ) \gg shift )$ | 0     |
+=======
 | Prediction modes              | wT                                | wL                                | wTL  |
 | ----------------------------- | --------------------------------- | --------------------------------- | ---- |
 | Diagonal top-right            | 16 >> ( ( *y’*<<1  ) >> *shift*)  | 16 >> ( ( *x’*<<1  ) >> *shift*)  | 0    |
 | Diagonal bottom-left          | 16 >> ( ( *y’*<<1  ) >> *shift* ) | 16 >> ( ( *x’*<<1  ) >> *shift* ) | 0    |
 | Adjacent diagonal top-right   | 32 >> ( ( *y’*<<1  ) >> *shift* ) | 0                                 | 0    |
 | Adjacent diagonal bottom-left | 0                                 | 32 >> ( ( *x’*<<1  ) >> *shift* ) | 0    |
+>>>>>>> 1965b3fe7dad95cbc23b302f2260dbff04c674b6

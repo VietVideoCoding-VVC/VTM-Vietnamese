@@ -1,0 +1,5 @@
+## 3.5    Transform and quantization
+
+### 3.5.1    Large block-size transforms with high-frequency zeroing
+
+In VVC, large block-size transforms, up to $64×64$ in size, are enabled, which is primarily useful for higher resolution video, e.g., 1080p and 4K sequences. High frequency transform coefficients are zeroed out for the transform blocks with size (width or height, or both width and height) equal to $64$, so that only the lower-frequency coefficients are retained. For example, for an $M×N$ transform block, with $M$ as the block width and $N$ as the block height, when $M$ is equal to $64$, only the left $32$ columns of transform coefficients are kept. Similarly, when N is equal to 64, only the top 32 rows of transform coefficients are kept. When transform skip mode is used for a large block, the entire block is used without zeroing out any values. The VTM also supports configurable max transform size in SPS, such that encoder has the flexibility to choose up to 16-length, 32-length or 64-length transform size depending on the need of specific implementation.

@@ -10,7 +10,7 @@ In HEVC, every intra-coded block has a square shape and the length of each of it
 
 #### 3.3.1.1  Intra mode coding
 
-​                                 ![Fig13](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig13.PNG)
+​                                 ![Fig13](\imgs\Fig13.PNG)
 
 Figure 13 – 67 intra prediction modes
 
@@ -34,7 +34,7 @@ A unified 6-MPM list is used for intra blocks irrespective of whether MRL and IS
 
 –     Set a mode *Max* as the larger mode in *Left* and *Above*
 
-–     MPM list à {Planar, *Max*, DC, *Max -1, Max +1*, *Max -2*}
+–     MPM list as {Planar, *Max*, DC, *Max -1, Max +1*, *Max -2*}
 
 ·     If *Left* and *Above* are both angular and they are different:
 
@@ -42,11 +42,11 @@ A unified 6-MPM list is used for intra blocks irrespective of whether MRL and IS
 
 –     if the difference of mode *Left* and *Above* is in the range of 2 to 62, inclusive
 
-§ MPM list à {Planar, *Left*, *Above*, DC, *Max -1*, *Max +1*}
+§ MPM list as {Planar, *Left*, *Above*, DC, *Max -1*, *Max +1*}
 
 –     Otherwise
 
-§ MPM list à {Planar, *Left*, *Above*, DC, *Max -2, Max +2*}
+§ MPM list as {Planar, *Left*, *Above*, DC, *Max -2, Max +2*}
 
 ·     If *Left* and *Above* are both angular and they are the same:
 
@@ -60,11 +60,11 @@ During 6 MPM list generation process, pruning is used to remove duplicated modes
 
 Conventional angular intra prediction directions are defined from 45 degrees to -135 degrees in clockwise direction. In VVC, several conventional angular intra prediction modes are adaptively replaced with wide-angle intra prediction modes for non-square blocks. The replaced modes are signalled using the original mode indexes, which are remapped to the indexes of wide angular modes after parsing. The total number of intra prediction modes is unchanged, i.e., 67, and the intra mode coding method is unchanged.
 
-​    ![Fig14-A](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig14-A.png)
+​    ![Fig14-A](\imgs\Fig14-A.png)
 
 
 
-![Fig14-B](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig14-B.png)
+![Fig14-B](\imgs\Fig14-B.png)
 
 Figure 14 – Reference samples for wide-angular intra prediction 
 
@@ -74,27 +74,27 @@ The number of replaced modes in wide-angular direction mode depends on the aspec
 
 Table 3‑2 – Intra prediction modes replaced by wide-angular modes
 
-| Aspect ratio  | Replaced intra prediction modes    |
-| ------------- | ---------------------------------- |
-| W / H == 16   | Modes 12, 13,14,15                 |
-| W / H == 8    | Modes 12, 13                       |
-| W / H == 4    | Modes 2,3,4,5,6,7,8,9,10,11        |
-| W / H == 2    | Modes 2,3,4,5,6,7,                 |
-| W / H == 1    | None                               |
-| W / H == 1/2  | Modes 61,62,63,64,65,66            |
-| W / H == 1/4  | Mode 57,58,59,60,61,62,63,64,65,66 |
-| W / H == 1/8  | Modes 55, 56                       |
-| W / H == 1/16 | Modes 53, 54, 55, 56               |
+| Aspect ratio    | Replaced intra prediction modes              |
+| --------------- | -------------------------------------------- |
+| $W / H == 16$   | Modes 12, 13, 14, 15                         |
+| $W / H == 8$    | Modes 12, 13                                 |
+| $W / H == 4$$   | Modes 2, 3, 4, 5, 6, 7, 8, 9, 10, 11         |
+| $W / H == 2$    | Modes 2, 3, 4, 5, 6, 7                       |
+| $W / H == 1$    | None                                         |
+| $W / H == 1/2$  | Modes 61, 62, 63, 64, 65, 66                 |
+| $W / H == 1/4$  | Modes 57, 58, 59, 60, 61, 62, 63, 64, 65, 66 |
+| $W / H == 1/8$  | Modes 55, 56                                 |
+| $W / H == 1/16$ | Modes 53, 54, 55, 56                         |
 
  
 
-  ![Fig15](C:\Users\Thuong\Documents\GitHub\VTM7-Vn\VTM7\imgs\Fig15.PNG)
+  ![Fig15](imgs\Fig15.PNG)
 
 Figure 15 – Problem of discontinuity in case of directions beyond 45°
 
 As shown in Figure 15, two vertically-adjacent predicted samples may use two non-adjacent reference samples in the case of wide-angle intra prediction. Hence, low-pass reference samples filter and side smoothing are applied to the wide-angle prediction to reduce the negative effect of the increased gap ∆pα. If a wide-angle mode represents a non-fractional offset. There are 8 modes in the wide-angle modes satisfy this condition, which are [-14, -12, -10, -6, 72, 76, 78, 80]. When a block is predicted by these modes, the samples in the reference buffer are directly copied without applying any interpolation. With this modification, the number of samples needed to be smoothing is reduced. Besides, it aligns the design of non-fractional modes in the conventional prediction modes and wide-angle modes.
 
-In VVC, 4:2:2 and 4:4:4 chroma formats are supported as well as 4:2:0. Chroma derived mode (DM) derivation table for 4:2:2 chroma format was initially ported from HEVC extending the number of entries from 35 to 67 to align with the extension of intra prediction modes. Since HEVC specification does not support prediction angle below -135 degree and above 45 degree, luma intra prediction modes ranging from 2 to 5 are mapped to 2. Therefore chroma DM derivation table for 4:2:2: chroma format is updated by replacing some values of the entries of the mapping table to convert prediction angle more precisely for chroma blocks. 
+In VVC, $4:2:2$ and $4:4:4$ chroma formats are supported as well as $4:2:0$. Chroma derived mode (DM) derivation table for $4:2:2$ chroma format was initially ported from HEVC extending the number of entries from 35 to 67 to align with the extension of intra prediction modes. Since HEVC specification does not support prediction angle below -135 degree and above 45 degree, luma intra prediction modes ranging from 2 to 5 are mapped to 2. Therefore chroma DM derivation table for $4:2:2$ chroma format is updated by replacing some values of the entries of the mapping table to convert prediction angle more precisely for chroma blocks. 
 
 #### 3.3.1.3  Mode Dependent Intra Smoothing (MDIS)
 
